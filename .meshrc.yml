@@ -1,0 +1,31 @@
+
+sources:
+  - name: MySM
+    handler:
+      mysql:
+        host: localhost
+        port: 3306
+        user: work
+        password: barokah
+        database: mysm
+        tables:
+          - accounts
+          - users
+
+additionalTypeDefs: |
+  extend type users {
+    accounts: accounts
+  }
+additionalResolvers:
+  - ./resolvers.ts
+   # - targetTypeName: users
+   #   targetFieldName: accounts
+   #   requiredSelectionSet: |
+   #     {
+   #       account_id
+   #     }
+   #   sourceName: MySM # Which source does the target field belong to?
+   #   sourceTypeName: Query # Which root type does the target field belong to?
+   #   sourceFieldName: accounts # What is the source field name?
+   #   sourceArgs: # What args does this need to take?
+   #     where.id: '{root.account_id}'

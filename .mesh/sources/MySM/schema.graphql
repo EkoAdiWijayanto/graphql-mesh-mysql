@@ -1,0 +1,123 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  accounts(limit: Int, offset: Int, where: accounts_WhereInput, orderBy: accounts_OrderByInput): [accounts]
+  count_accounts(where: accounts_WhereInput): Int
+  users(limit: Int, offset: Int, where: users_WhereInput, orderBy: users_OrderByInput): [users]
+  count_users(where: users_WhereInput): Int
+}
+
+type accounts {
+  id: String!
+  idaccount: Int!
+  fullname: String!
+  created_at: Timestamp!
+  updated_at: Timestamp!
+}
+
+"The javascript `Date` as integer. Type represents date and time as number of milliseconds from start of UNIX epoch."
+scalar Timestamp
+
+input accounts_WhereInput {
+  id: String
+  idaccount: String
+  fullname: String
+  created_at: String
+  updated_at: String
+}
+
+input accounts_OrderByInput {
+  id: OrderBy
+  idaccount: OrderBy
+  fullname: OrderBy
+  created_at: OrderBy
+  updated_at: OrderBy
+}
+
+enum OrderBy {
+  asc
+  desc
+}
+
+type users {
+  id: String!
+  iduser: Int!
+  account_id: String!
+  firstname: String!
+  lastname: String!
+  email: String!
+  created_at: Timestamp!
+  updated_at: Timestamp!
+}
+
+input users_WhereInput {
+  id: String
+  iduser: String
+  account_id: String
+  firstname: String
+  lastname: String
+  email: String
+  created_at: String
+  updated_at: String
+}
+
+input users_OrderByInput {
+  id: OrderBy
+  iduser: OrderBy
+  account_id: OrderBy
+  firstname: OrderBy
+  lastname: OrderBy
+  email: OrderBy
+  created_at: OrderBy
+  updated_at: OrderBy
+}
+
+type Mutation {
+  insert_accounts(accounts: accounts_InsertInput!): accounts
+  update_accounts(accounts: accounts_UpdateInput!, where: accounts_WhereInput): accounts
+  delete_accounts(where: accounts_WhereInput): Boolean
+  insert_users(users: users_InsertInput!): users
+  update_users(users: users_UpdateInput!, where: users_WhereInput): users
+  delete_users(where: users_WhereInput): Boolean
+}
+
+input accounts_InsertInput {
+  id: String!
+  idaccount: Int!
+  fullname: String!
+  created_at: Timestamp!
+  updated_at: Timestamp!
+}
+
+input accounts_UpdateInput {
+  id: String
+  idaccount: Int
+  fullname: String
+  created_at: Timestamp
+  updated_at: Timestamp
+}
+
+input users_InsertInput {
+  id: String!
+  iduser: Int!
+  account_id: String!
+  firstname: String!
+  lastname: String!
+  email: String!
+  created_at: Timestamp!
+  updated_at: Timestamp!
+}
+
+input users_UpdateInput {
+  id: String
+  iduser: Int
+  account_id: String
+  firstname: String
+  lastname: String
+  email: String
+  created_at: Timestamp
+  updated_at: Timestamp
+}
